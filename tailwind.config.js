@@ -10,6 +10,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'phone': '0px',
+      },
       colors: {'primary-orange': '#f25d00',}
     },
   },

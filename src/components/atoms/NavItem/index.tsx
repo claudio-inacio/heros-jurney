@@ -7,9 +7,9 @@ import Link from "next/link";
 export default function NavItem(props: INavItem){
     return (
             <li className="w-28  focus:bg-blue-400 py-2 cursor-pointer rounded-md bg-primary-orange  list-none items-center justify-center flex  " >
-                <Link href={`/${props.route}`}>                
-                        <TextInfo info={props.name}/>                               
-                </Link>
+            <Link href={`/${props.route}`} className="w-full justify-center flex">                
+                <TextInfo info={props.name}/>                               
+            </Link>
             </li>
     )
 }
