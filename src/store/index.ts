@@ -1,9 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { battleReducer } from "./battle/battle-slice";
+import { herosBattleInfoReducer } from "./battle/battle-slice";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 
 export const store = configureStore({
     reducer: {
-        battle: battleReducer,
+        herosInfo: herosBattleInfoReducer,
     },
-})
+});
+
+export type RootState = ReturnType<typeof store.getState>
+export type HeroInfoDispatch = typeof store.dispatch;
+
+export const useHeroSelector: TypedUseSelectorHook<RootState> = useSelector;

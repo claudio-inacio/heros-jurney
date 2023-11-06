@@ -5,8 +5,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 
-const battleHeroSlice = createSlice({
-    name: "heroBattle",
+const herosBattleInfoSlice = createSlice({
+    name: "herosBattleInfo",
     initialState: {
         infoHeroOne: {
             name: '',
@@ -27,8 +27,4 @@ const battleHeroSlice = createSlice({
     }
 })
 
-export const {reducer: battleReducer} = battleHeroSlice
-
-// export const {setHeroOne, setHeroTwo} = battleHeroSlice.actions;
-// export const getHeroOne = (state: {}) => state.infoHeroOne
-// export const getHeroTwo = (state) => state.infoHeroTwo
+export const {reducer: herosBattleInfoReducer, actions} = herosBattleInfoSlice
