@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import ImageVS from '../assets/images/imageVS.png';
 import Image from "next/image";
+import BattleModal from "@/components/organisms/modal";
 
 
 interface IHeroResult {
@@ -32,9 +33,10 @@ export default function Home(){
         const [loading, setLoading] = useState<boolean>(true)
         const dispatch = useDispatch<HeroInfoDispatch>();
         const [heroSelect, setHeroSelect] = useState(1);
-        const vsImage = '../assets/images/imageVS.png'
+        const [openModal, setOpenModal] = useState<boolean>(false);
         const heroOne = useHeroSelector(state => state.herosInfo.infoHeroOne)
         const heroTwo = useHeroSelector(state => state.herosInfo.infoHeroTwo)
+        const resetStatusHeros = {combat: 0, durability:0, intelligence: 0, power: 0, speed: 0, strength: 0}
         // dispatch(actions.setHeroOne({name: 'maria do bairro'}))
         
         async function handleGetHeros() {
@@ -52,15 +54,24 @@ export default function Home(){
         
         const hendleSaveHero = (hero: IHeroResult) => {
             if(heroSelect === 1){
-                dispatch(actions.setHeroOne({name: hero.name, heroPowers: hero.powerstats }))
+                dispatch(actions.setHeroOne({name: hero.name, image: hero.images.md, race: hero.appearance.race, heroPowers: hero.powerstats }))
                 setHeroSelect(2);
             }else{
-                dispatch(actions.setHeroTwo({name: hero.name, heroPowers: hero.powerstats }))                
+                dispatch(actions.setHeroTwo({name: hero.name, image: hero.images.md,race: hero.appearance.race, heroPowers: hero.powerstats }))                
             }
+        }
+        const hendleResetHeros = () => {            
+                dispatch(actions.setResetHeroStatus())
+                setHeroSelect(1); 
+        }
+        function handleCloseModal(){
+            return setOpenModal(false)
+        };
+        const handleInitBattle = () => {
+            setOpenModal(true)
         }
         
         useEffect( ()  => {            
-            
             handleGetHeros()                        
         },[])
         console.log('heroOne: ', heroOne)
@@ -70,13 +81,19 @@ export default function Home(){
         {loading && <CircularProgress />}
         {!loading && heros.length > 0  &&(
         <Box className="flex flex-col">
-            <Box className="bg-gray-700 flex flex-col p-16 items-center text-white">
-                <Box className='flex items-center justify-center'>
-                    <Typography variant="subtitle1">{heroOne.name} </Typography> 
+            <Box className="bg-gray-700 flex flex-col p-16 items-center text-white">            
+                <Box className='flex items-center justify-center'>                    
+                    <Typography onClick={() => setHeroSelect(1)} className={`border-b-4 ${heroSelect === 1 && 'border-primary-orange'} cursor-pointer py-2 px-8 bg-gray-950 rounded-md`} variant="subtitle1">
+                        {heroOne.name || '----------'} 
+                    </Typography>                 
                     <Image width={300} height={300} src={ImageVS} alt="imagem versus" /> 
-                    <Typography variant="subtitle1">{heroTwo.name}</Typography>
-                </Box>
-                <Button disabled={heroTwo.name === ''} color='warning' size="large"  variant="contained" className="w-1/2">Batalhar</Button>
+                    <Typography onClick={() => setHeroSelect(2)} className={`border-b-4 ${heroSelect === 2 && 'border-primary-orange'} cursor-pointer py-2 px-8 bg-gray-950 rounded-md`} variant="subtitle1">
+                        {heroTwo.name || '----------'}
+                    </Typography>
+                </Box>                    
+                <Button disabled={heroTwo.name === ''} onClick={() => handleInitBattle()} color='warning' size="large"  variant="contained" className="w-1/2">Batalhar</Button>
+                <Button disabled={heroOne.name === ''} onClick={() => hendleResetHeros()} color='info' size="large"  variant="contained" className="w-1/4 mt-3">Limpar Escolhas</Button>
+                    <h1>Selecione os personagens da batalha</h1>
             </Box>
              <Grid container spacing={1}  style={{minWidth: '320px'}} className="flex flex-wrapflex-col ">
                 {heros.map((hero) => {
@@ -88,7 +105,8 @@ export default function Home(){
      
                     )       
                 })} 
-             </Grid>        
+             </Grid> 
+             <BattleModal hendleResetHeros={hendleResetHeros} open={openModal} handleClose={handleCloseModal} />
         </Box>
         )}
         {!loading  &&  heros.length === 0 && (

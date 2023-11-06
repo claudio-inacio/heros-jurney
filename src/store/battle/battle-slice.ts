@@ -3,19 +3,25 @@ import { IPowerStats } from "@/components/molecules/HeroCard/generic-interfaces/
 import { createSlice } from "@reduxjs/toolkit";
 
 
+export const initialStatesHero: IPowerStats = {
+    combat: 0, durability: 0, intelligence: 0, power: 0, speed: 0, strength: 0
+}
+
+export const initialDataHeros ={
+    name: '',
+    image:'',
+    race: '',
+    heroPowers: initialStatesHero, 
+}
+
+
 
 
 const herosBattleInfoSlice = createSlice({
     name: "herosBattleInfo",
     initialState: {
-        infoHeroOne: {
-            name: '',
-            heroPowers: <IPowerStats>{combat: 0, durability: 0, intelligence: 0, power: 0, speed: 0, strength: 0}, 
-        },
-        infoHeroTwo: {
-            name: '',
-            heroPowers: <IPowerStats>{combat: 10, durability: 10, intelligence: 10, power: 10, speed: 10, strength: 10},
-        },
+        infoHeroOne: initialDataHeros,
+        infoHeroTwo: initialDataHeros,
     },
     reducers: {
         setHeroOne(state, action){
@@ -23,6 +29,10 @@ const herosBattleInfoSlice = createSlice({
         },
         setHeroTwo(state, action){
             state.infoHeroTwo = action.payload;
+        },
+        setResetHeroStatus(state){        
+            state.infoHeroOne = initialDataHeros,
+            state.infoHeroTwo = initialDataHeros
         }
     }
 })

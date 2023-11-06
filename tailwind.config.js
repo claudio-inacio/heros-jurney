@@ -13,7 +13,11 @@ module.exports = {
       screens: {
         'phone': '0px',
       },
-      colors: {'primary-orange': '#f25d00',}
+      colors: {'primary-orange': '#f25d00'},
+      backgroundImage: {
+        'herobg': "url('/src/assets/images/imageVS.png')",
+
+      }
     },
   },
   plugins: [],

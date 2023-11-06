@@ -1,3 +1,3 @@
 export interface IHeroPower {
-  power: number,
+  power?: number,
 }
