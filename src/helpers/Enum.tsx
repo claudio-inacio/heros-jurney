@@ -2,7 +2,7 @@
 
 // eslint-disable-next-line import/prefer-default-export
 export const HeroRaceColor = {
-    ['Human']: 'rgb(67 160 71)',
+  ['Human']: 'rgb(67 160 71)',
   ['Icthyo Sapien']: 'rgb(8, 145, 178)',
   ['Ungaran']: 'rgb(30, 64, 175)',
   ['Cosmic Entity']: 'rgb(147,51,234)',
