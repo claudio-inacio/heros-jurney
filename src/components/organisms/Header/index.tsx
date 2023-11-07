@@ -6,11 +6,6 @@ import { ReactNode } from "react";
 import UserInformations from "../../molecules/UserInformations";
 import NavGroup from "../../molecules/NavGroup";
 
-// interface HeaderProps{
-//     children: ReactNode;
-// }
-
-//{children}: HeaderProps
 export default function Header(){
     const myRouts = [
         {name: 'Batalha', route: ""},

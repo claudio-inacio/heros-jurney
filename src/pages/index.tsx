@@ -16,7 +16,7 @@ import Image from "next/image";
 import BattleModal from "@/components/organisms/modal";
 
 
-interface IHeroResult {
+export interface IHeroResult {
     appearance: IApparence,
     biography: IBiography,
     connections: IConnections,
@@ -29,23 +29,24 @@ interface IHeroResult {
 }
 
 export default function Home(){
-        const [heros, setHeros] = useState<IHeroResult[]>([]);
+        // const [heros, setHeros] = useState<IHeroResult[]>([]);
         const [loading, setLoading] = useState<boolean>(true)
         const dispatch = useDispatch<HeroInfoDispatch>();
         const [heroSelect, setHeroSelect] = useState(1);
         const [openModal, setOpenModal] = useState<boolean>(false);
         const heroOne = useHeroSelector(state => state.herosInfo.infoHeroOne)
         const heroTwo = useHeroSelector(state => state.herosInfo.infoHeroTwo)
-        const resetStatusHeros = {combat: 0, durability:0, intelligence: 0, power: 0, speed: 0, strength: 0}
-        // dispatch(actions.setHeroOne({name: 'maria do bairro'}))
+        let heros = useHeroSelector(state => state.herosInfo.listheros);
+        const resetStatusHeros = {combat: 0, durability:0, intelligence: 0, power: 0, speed: 0, strength: 0}        
         
         async function handleGetHeros() {
             setLoading(true)
             const response = await api.get('') 
             if(response.status === 200){
-                setHeros(response.data)
+                // setHeros(response.data)
+                dispatch(actions.setListHeros(response.data))
             }else{
-                setHeros([]);
+                // setHeros([]);
             }
             
             setLoading(false)
@@ -73,12 +74,15 @@ export default function Home(){
         
         useEffect( ()  => {            
             handleGetHeros()                        
-        },[])
-        console.log('heroOne: ', heroOne)
+        },[])        
     
     return (
         <div className="w-full h-full bg-gray-500  flex ">
-        {loading && <CircularProgress />}
+        {loading && (
+            <Box className=' w-full flex flex-col justify-center items-center' >
+                <CircularProgress />
+                <Typography>Carregando Herois...</Typography>
+            </Box> )}
         {!loading && heros.length > 0  &&(
         <Box className="flex flex-col">
             <Box className="bg-gray-700 flex flex-col p-16 items-center text-white">            

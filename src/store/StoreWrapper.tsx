@@ -8,5 +8,8 @@ interface IStoreWrapper{
 }
 
 export function StoreWrapper({children}: IStoreWrapper){
-    return <Provider store={store}>{children}</Provider>
+    return <Provider store={store}>
+                {children}
+                
+    </Provider>
 }
