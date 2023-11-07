@@ -13,12 +13,12 @@ function SearchInput(props: ISearchInput) {
   const [fullHeros, setFullHeros] = useState<IListHeros[]>([]);
   
 
-  
   useEffect(() => {  
     if(fullHeros.length === 1 || fullHeros.length === 0){
       setFullHeros(heros)
     }
-  }, [])
+  }, [heros])
+    
     
   return (
     <div className="">
@@ -31,10 +31,9 @@ function SearchInput(props: ISearchInput) {
             focused
             label={props.label}            
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                console.log(event?.target?.value)
-                    const teste = fullHeros.filter((hero) =>  hero.name.toLowerCase().includes(event.target.value.toLocaleLowerCase()));                  
-                    console.log('teste', teste)
-                    dispatch(actions.setListHeros(teste));
+                
+                    const herosFiltered = fullHeros.filter((hero) =>  hero.name.toLowerCase().includes(event.target.value.toLocaleLowerCase()));                                      
+                    dispatch(actions.setListHeros(herosFiltered));
 
             }}
             InputProps={{
