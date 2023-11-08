@@ -45,6 +45,7 @@ export const listHeros = [{
     biography: <IBiography>{},
     connections: <IConnections>{},
     id: <number>0,
+    powerstats: <IPowerStats>{},
     name: <string>'',
     images: <IImages>{},
     slug: <string>{},

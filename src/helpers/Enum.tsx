@@ -1,7 +1,7 @@
 
 
 // eslint-disable-next-line import/prefer-default-export
-export const HeroRaceColor = {
+export const HeroRaceColor: {[key: string]: string} = {
   ['Human']: 'rgb(67 160 71)',
   ['Icthyo Sapien']: 'rgb(8, 145, 178)',
   ['Ungaran']: 'rgb(30, 64, 175)',
@@ -44,7 +44,8 @@ export const HeroRaceColor = {
   ['Gungan']: 'rgb(165,42,42)',
 };
 
-export const HeroBgColor = {
+
+export const HeroBgColor: {[key: string]: string} = {
     ['Human']: 'rgb(22 101 52)',
     ['Icthyo Sapien']: 'rgb(21 94 117)',
     ['Ungaran']: 'rgb(30, 64, 175)',
