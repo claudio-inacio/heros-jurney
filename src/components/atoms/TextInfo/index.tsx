@@ -4,7 +4,7 @@ import { ITextInfo } from "./TextInfo.interface";
 
 export default function TextInfo(props: ITextInfo){
     return (
-            <Typography className="font-bold text-white">
+            <Typography className="font-bold text-white text-center">
                  {props.info}
             </Typography>
     )

@@ -6,6 +6,6 @@ export interface IHeroPowerStats {
   heroImage: string,
   heroRace: string,
   principalHero: IPowerStats,
-  openenteHero: IPowerStats,
+  oponenteHero: IPowerStats,
   championLeft?: boolean,
 }

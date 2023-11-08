@@ -74,7 +74,7 @@ export default function Home(){
         },[])        
     
     return (
-        <div className="w-full h-full bg-gray-500  flex flex-col" style={{minHeight: '100vh'}}>
+        <div className="w-full h-full bg-gray-500  flex flex-col" style={{minHeight: '100vh', minWidth:'320px'}}>
             {loading && (
                 <LoaderHeros/>
             )}
@@ -85,12 +85,12 @@ export default function Home(){
                 <ListHeros handleCloseModal={handleCloseModal} hendleResetHeros={hendleResetHeros} hendleSaveHero={hendleSaveHero} heros={heros} openModal={openModal} />
             )}
         {!loading  &&  heros.length === 0 && (
-        <Box style={{height: '500px'}}className=' w-full flex  flex-col justify-start items-center' >
-            <Alert severity="info">
-                <AlertTitle>Info</AlertTitle>
-                Nenhum Herói foi encontrado com esse nome
-            </Alert>
-        </Box>
+            <Box style={{height: '500px'}}className=' w-full flex  flex-col justify-start items-center' >
+                <Alert severity="info">
+                    <AlertTitle>Info</AlertTitle>
+                    Nenhum Herói foi encontrado com esse nome
+                </Alert>
+            </Box>
         )}
         </div>    
         )

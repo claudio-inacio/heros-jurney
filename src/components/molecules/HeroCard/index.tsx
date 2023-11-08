@@ -10,17 +10,15 @@ import { IHeroCard } from "./HeroCard.interface";
 export default function HeroCard({heroName, heroRace, heroImageUrl, heroPower}: IHeroCard){
     return (
 
-    <Box  className='hover:opacity-70 cursor-pointer rounded-lg border-2 opacity-3 w-48 h-80 lg:h-80 flex flex-col justify-start items-center'
+    <Box  className='hover:opacity-70 cursor-pointer rounded-lg border-2 opacity-3  md:w-48 md:h-80 phone:w-32 phone:h-52 flex flex-col justify-start items-center'
         style={{backgroundColor:`${HeroBgColor[heroRace]}`, borderColor: `${HeroRaceColor[heroRace]}` }}
     >
-            
-        <HeroImage 
-            // url="https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/lg/1-a-bomb.jpg" 
+        <HeroImage             
              url={heroImageUrl} 
             nameHero={heroName || 'Sem raça'}
             colorHero={heroRace}
         />
-        <Typography variant="h5" className="mt-2 text-center text-lg">{heroName}</Typography>
+        <Typography variant="h6" className="mt-2 text-center text-lg">{heroName}</Typography>
         <TextInfo info={heroRace}  />
         <HeroPower power={heroPower} />        
     </Box>
