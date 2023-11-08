@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
 import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
